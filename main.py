@@ -16,4 +16,5 @@ if __name__=="__main__":
 
     model.compile(optimizer=optimizer, loss=loss)#model.compute_loss)  # Use the model's compute_loss method
     model.fit(tf_dataset, epochs=3,validation_data=tf_val_dataset,)  # Adjust the number of epochs as needed
-
+    
+    model.save('bert_model')

@@ -59,8 +59,11 @@ def load_and_prepare_for_mlm(path):
     tf_dataset = tf_dataset.map(dynamic_masking)
 
     return tf_dataset.batch(32)  # Batch the dataset
+
+val_size = 1_000_000
+
 if __name__=="__main__":
-    dataset = load_dataset("bookcorpus", split="train[:100]")
+    dataset = load_dataset("bookcorpus", split=f"train[{val_size}:]")
     # Apply the function to the whole dataset
     dataset = dataset.map(tokenize_and_encode, batched=True)
     #dataset = tf_dataset.with_format('tensorflow')
@@ -68,7 +71,7 @@ if __name__=="__main__":
     
 
     #NO VAL DATA making my own
-    val_dataset = load_dataset("bookcorpus", split="train[-100:]")
+    val_dataset = load_dataset("bookcorpus", split="train[:{val_size}]")
     # Apply the function to the whole dataset
     val_dataset = val_dataset.map(tokenize_and_encode, batched=True)
     #dataset = tf_dataset.with_format('tensorflow')
