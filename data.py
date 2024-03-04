@@ -71,7 +71,7 @@ if __name__=="__main__":
     
 
     #NO VAL DATA making my own
-    val_dataset = load_dataset("bookcorpus", split="train[:{val_size}]")
+    val_dataset = load_dataset("bookcorpus", split=f"train[:{val_size}]")
     # Apply the function to the whole dataset
     val_dataset = val_dataset.map(tokenize_and_encode, batched=True)
     #dataset = tf_dataset.with_format('tensorflow')
